@@ -113,6 +113,16 @@ wasmparser          = { version = "0.222.0", default-features = false }
 winnow              = { version = "0.7.12", default-features = false, features = ["std", "simd"] }
 xxhash-rust         = { version = "0.8.14", default-features = false }
 
+allocative       = { package = "rspack-allocative", version = "0.3", features = [
+  "camino",
+  "dashmap",
+  "hashbrown",
+  "indexmap",
+  "tokio",
+  "once_cell",
+  "ustr",
+] }
+
 # Pinned
 napi        = { version = "3.1.6", default-features = false }
 napi-build  = { version = "2.2.3", default-features = false }

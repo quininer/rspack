@@ -1,5 +1,6 @@
 use rspack_core::CompilationId;
 use rspack_hook::define_hook;
+use rspack_util::allocative;
 
 use crate::{
   asset::{HtmlPluginAssetTags, HtmlPluginAssets},
@@ -66,11 +67,18 @@ define_hook!(HtmlPluginBeforeEmit: SeriesWaterfall(data: BeforeEmitData) -> Befo
 define_hook!(HtmlPluginAfterEmit: SeriesWaterfall(data: AfterEmitData) -> AfterEmitData);
 
 #[derive(Debug, Default)]
+#[derive(allocative::Allocative)]
 pub struct HtmlPluginHooks {
+  #[allocative(skip)]
   pub before_asset_tag_generation: HtmlPluginBeforeAssetTagGenerationHook,
+  #[allocative(skip)]
   pub alter_asset_tags: HtmlPluginAlterAssetTagsHook,
+  #[allocative(skip)]
   pub alter_asset_tag_groups: HtmlPluginAlterAssetTagGroupsHook,
+  #[allocative(skip)]
   pub after_template_execution: HtmlPluginAfterTemplateExecutionHook,
+  #[allocative(skip)]
   pub before_emit: HtmlPluginBeforeEmitHook,
+  #[allocative(skip)]
   pub after_emit: HtmlPluginAfterEmitHook,
 }

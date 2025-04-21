@@ -10,6 +10,7 @@ use rspack_core::{Compilation, CompilationId, CompilationProcessAssets, Filename
 use rspack_error::{Diagnostic, Result};
 use rspack_hook::{plugin, plugin_hook};
 use rspack_util::fx_hash::FxDashMap;
+use rspack_util::allocative;
 use sugar_path::SugarPath;
 use swc_html::visit::VisitMutWith;
 
@@ -28,6 +29,7 @@ use crate::{
 /// We should make sure that there's no read-write and write-write conflicts for each hook instance by looking up [HtmlRspackPlugin::get_compilation_hooks_mut]
 type ArcHtmlPluginHooks = Arc<AtomicRefCell<HtmlPluginHooks>>;
 
+#[allocative::root]
 static COMPILATION_HOOKS_MAP: LazyLock<FxDashMap<CompilationId, ArcHtmlPluginHooks>> =
   LazyLock::new(Default::default);
 

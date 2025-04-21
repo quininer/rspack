@@ -247,7 +247,7 @@ impl ExecKind {
         quote! {
           #additional_taps
           let futs: std::vec::Vec<_> = all_taps.iter().map(|t| t.run(#args)).collect();
-          futures_concurrency::vec::TryJoin(futs).await?;
+          futures::future::try_join_all(futs).await?;
           Ok(())
         }
       }

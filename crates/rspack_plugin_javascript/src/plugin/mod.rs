@@ -40,6 +40,7 @@ use rspack_hash::{RspackHash, RspackHashDigest};
 use rspack_hook::plugin;
 use rspack_javascript_compiler::ast::Ast;
 use rspack_util::{SpanExt, diff_mode};
+use rspack_util::allocative;
 use rustc_hash::FxHashMap;
 pub use side_effects_flag_plugin::*;
 use swc_core::{
@@ -53,6 +54,7 @@ use crate::runtime::{
   render_chunk_modules, render_module, render_runtime_modules, stringify_array,
 };
 
+#[allocative::root]
 static COMPILATION_HOOKS_MAP: LazyLock<
   SyncRwLock<FxHashMap<CompilationId, Arc<RwLock<JavascriptModulesPluginHooks>>>>,
 > = LazyLock::new(Default::default);

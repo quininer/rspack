@@ -25,7 +25,9 @@ pub mod import_emitted_runtime {
   use once_cell::sync::OnceCell;
   use rspack_collections::{IdentifierDashMap, IdentifierMap};
   use rspack_core::{ModuleIdentifier, RuntimeCondition};
+  use rspack_util::allocative;
 
+  #[allocative::root]
   static IMPORT_EMITTED_MAP: OnceCell<IdentifierDashMap<IdentifierMap<RuntimeCondition>>> =
     OnceCell::new();
 

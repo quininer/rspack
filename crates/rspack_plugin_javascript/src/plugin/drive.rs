@@ -4,6 +4,7 @@ use rspack_core::{
 };
 use rspack_hash::RspackHash;
 use rspack_hook::define_hook;
+use rspack_util::allocative;
 
 define_hook!(JavascriptModulesRenderChunk: Series(compilation: &Compilation, chunk_ukey: &ChunkUkey, source: &mut RenderSource));
 define_hook!(JavascriptModulesRenderChunkContent: SeriesBail(compilation: &Compilation, chunk_ukey: &ChunkUkey, asset_info: &mut AssetInfo) -> RenderSource);
@@ -18,17 +19,29 @@ define_hook!(JavascriptModulesEmbedInRuntimeBailout: SeriesBail(compilation: &Co
 define_hook!(JavascriptModulesStrictRuntimeBailout: SeriesBail(compilation: &Compilation, chunk_ukey: &ChunkUkey) -> String);
 
 #[derive(Debug, Default)]
+#[derive(allocative::Allocative)]
 pub struct JavascriptModulesPluginHooks {
+  #[allocative(skip)]
   pub render_chunk: JavascriptModulesRenderChunkHook,
+  #[allocative(skip)]
   pub render_chunk_content: JavascriptModulesRenderChunkContentHook,
+  #[allocative(skip)]
   pub render: JavascriptModulesRenderHook,
+  #[allocative(skip)]
   pub render_startup: JavascriptModulesRenderStartupHook,
+  #[allocative(skip)]
   pub render_module_content: JavascriptModulesRenderModuleContentHook,
+  #[allocative(skip)]
   pub render_module_container: JavascriptModulesRenderModuleContainerHook,
+  #[allocative(skip)]
   pub render_module_package: JavascriptModulesRenderModulePackageHook,
+  #[allocative(skip)]
   pub chunk_hash: JavascriptModulesChunkHashHook,
+  #[allocative(skip)]
   pub inline_in_runtime_bailout: JavascriptModulesInlineInRuntimeBailoutHook,
+  #[allocative(skip)]
   pub embed_in_runtime_bailout: JavascriptModulesEmbedInRuntimeBailoutHook,
+  #[allocative(skip)]
   pub strict_runtime_bailout: JavascriptModulesStrictRuntimeBailoutHook,
 }
 

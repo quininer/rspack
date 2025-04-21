@@ -1,4 +1,5 @@
 use rspack_hook::define_hook;
+use rspack_util::allocative;
 
 use crate::{
   RsdoctorAssetPatch, RsdoctorChunkGraph, RsdoctorModuleGraph, RsdoctorModuleIdsPatch,
@@ -12,10 +13,16 @@ define_hook!(RsdoctorPluginModuleSources: SeriesBail(data: &mut RsdoctorModuleSo
 define_hook!(RsdoctorPluginAssets: SeriesBail(data: &mut RsdoctorAssetPatch) -> bool);
 
 #[derive(Debug, Default)]
+#[derive(allocative::Allocative)]
 pub struct RsdoctorPluginHooks {
+  #[allocative(skip)]
   pub module_graph: RsdoctorPluginModuleGraphHook,
+  #[allocative(skip)]
   pub chunk_graph: RsdoctorPluginChunkGraphHook,
+  #[allocative(skip)]
   pub module_ids: RsdoctorPluginModuleIdsHook,
+  #[allocative(skip)]
   pub module_sources: RsdoctorPluginModuleSourcesHook,
+  #[allocative(skip)]
   pub assets: RsdoctorPluginAssetsHook,
 }

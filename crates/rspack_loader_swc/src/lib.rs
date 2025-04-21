@@ -20,13 +20,16 @@ use swc_core::{
   base::config::{InputSourceMap, TransformConfig},
   common::FileName,
 };
+use rspack_util::allocative;
 
 use crate::collect_ts_info::collect_typescript_info;
 
 #[cacheable]
 #[derive(Debug)]
+#[derive(allocative::Allocative)]
 pub struct SwcLoader {
   identifier: Identifier,
+  #[allocative(skip)]
   options_with_additional: SwcCompilerOptionsWithAdditional,
 }
 

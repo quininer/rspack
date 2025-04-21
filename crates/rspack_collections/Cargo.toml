@@ -16,3 +16,4 @@ rayon            = { workspace = true }
 rspack_cacheable = { workspace = true }
 serde            = { workspace = true, features = ["derive"] }
 ustr             = { workspace = true, features = ["serde"] }
+allocative       = { workspace = true }

@@ -17,6 +17,7 @@ use rspack_plugin_devtool::{
   SourceMapDevToolModuleOptionsPlugin, SourceMapDevToolModuleOptionsPluginOptions,
 };
 use rspack_util::fx_hash::FxDashMap;
+use rspack_util::allocative;
 use rustc_hash::{FxHashMap as HashMap, FxHashSet as HashSet};
 
 use crate::{
@@ -47,11 +48,15 @@ pub type SendModuleSources =
 /// We should make sure that there's no read-write and write-write conflicts for each hook instance by looking up [RsdoctorPlugin::get_compilation_hooks_mut]
 type ArcRsdoctorPluginHooks = Arc<AtomicRefCell<RsdoctorPluginHooks>>;
 
+#[allocative::root]
 static COMPILATION_HOOKS_MAP: LazyLock<FxDashMap<CompilationId, ArcRsdoctorPluginHooks>> =
   LazyLock::new(Default::default);
 
+#[allocative::root]
 static MODULE_UKEY_MAP: LazyLock<FxDashMap<CompilationId, HashMap<Identifier, ModuleUkey>>> =
   LazyLock::new(FxDashMap::default);
+
+#[allocative::root]
 static ENTRYPOINT_UKEY_MAP: LazyLock<
   FxDashMap<CompilationId, HashMap<ChunkGroupUkey, EntrypointUkey>>,
 > = LazyLock::new(FxDashMap::default);

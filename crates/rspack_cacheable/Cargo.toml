@@ -10,6 +10,7 @@ version.workspace = true
 noop = []
 
 [dependencies]
+allocative      = { workspace = true }
 camino          = { workspace = true }
 dashmap         = { workspace = true }
 hashlink        = { workspace = true }

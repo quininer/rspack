@@ -28,6 +28,7 @@ use std::future::Future;
 
 pub use merge::{MergeFrom, merge_from_optional_with};
 pub use span::SpanExt;
+pub use allocative;
 
 pub async fn try_any<T, Fut, F, E>(it: impl IntoIterator<Item = T>, f: F) -> Result<bool, E>
 where

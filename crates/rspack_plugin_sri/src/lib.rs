@@ -25,6 +25,7 @@ use rspack_plugin_html::HtmlRspackPlugin;
 use rspack_plugin_real_content_hash::RealContentHashPlugin;
 use rspack_plugin_runtime::RuntimePlugin;
 use rspack_util::fx_hash::FxDashMap;
+use rspack_util::allocative;
 use runtime::{create_script, handle_runtime, link_preload};
 use rustc_hash::FxHashMap as HashMap;
 use tokio::sync::RwLock;
@@ -32,7 +33,9 @@ use tokio::sync::RwLock;
 type CompilationIntegrityMap =
   LazyLock<FxDashMap<CompilationId, Arc<RwLock<HashMap<String, String>>>>>;
 
+#[allocative::root]
 static COMPILATION_INTEGRITY_MAP: CompilationIntegrityMap = LazyLock::new(Default::default);
+#[allocative::root]
 static COMPILATION_CONTEXT_MAP: LazyLock<FxDashMap<CompilationId, Arc<SRICompilationContext>>> =
   LazyLock::new(Default::default);
 
