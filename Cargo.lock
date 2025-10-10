@@ -3429,10 +3429,11 @@ dependencies = [
 
 [[package]]
 name = "rspack-allocative"
-version = "0.3.4"
+version = "0.3.5"
 source = "registry+https://github.com/rust-lang/crates.io-index"
-checksum = "92ab72f7b64d0008a7f3459a30f9441c90c0f1e2e37bb201a9501ca4e6813578"
+checksum = "942dd788eb5b967d155baa21e4699e4a164e2b217a236ded02f22d86564730a4"
 dependencies = [
+ "atomic_refcell",
  "camino",
  "ctor 0.1.26",
  "dashmap 6.1.0",

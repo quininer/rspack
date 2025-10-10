@@ -113,7 +113,7 @@ wasmparser          = { version = "0.222.0", default-features = false }
 winnow              = { version = "0.7.12", default-features = false, features = ["std", "simd"] }
 xxhash-rust         = { version = "0.8.14", default-features = false }
 
-allocative       = { package = "rspack-allocative", version = "0.3", features = [
+allocative       = { package = "rspack-allocative", version = "0.3.5", features = [
   "camino",
   "dashmap",
   "hashbrown",
@@ -121,6 +121,7 @@ allocative       = { package = "rspack-allocative", version = "0.3", features = 
   "tokio",
   "once_cell",
   "ustr",
+  "atomic_refcell",
 ] }
 
 # Pinned
